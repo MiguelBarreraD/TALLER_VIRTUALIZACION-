@@ -1,11 +1,11 @@
 package org.example;
 
-import static spark.Spark.port;
-import static spark.Spark.get;
+import static spark.Spark.*;
+
 public class SparkWebServer {
 
     public static void main(String... args){
-
+        staticFiles.location("/public");
         port(getPort());
 
         get("Sin/:angulo", (req,res) -> {
@@ -29,10 +29,6 @@ public class SparkWebServer {
             return Calculadora.esPalindromo(palabra);
         });
 
-        get("index.htlm", (req,res) -> {
-            return null;
-        });
-
     }
 
     private static int getPort() {
@@ -41,5 +37,6 @@ public class SparkWebServer {
         }
         return 4567;
     }
+
 
 }
